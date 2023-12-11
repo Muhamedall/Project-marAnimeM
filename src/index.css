@@ -1,3 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,9 +10,173 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.NavbarHome ul{
+  background-color: black;
+  display: flex; 
+ flex-direction: row;
+padding: 1em;
+ 
+  gap: 2%;
+  
+}
+.NavbarHome .linkTo{
+  
+   color: white;
+   padding: 4em;
+   text-decoration: none;
+   font-family:cursive;
+  
+}
+.NavbarHome li{
+  margin-top: 10px;
+ 
+  list-style-type: none;
+
+
+}
+.NavbarHome h1{
+ font-size: 25px;
+color: wheat;
+font-family: cursive;
+}
+.NavbarHome span{
+  margin: 0;
+   color:#dcfce7;
+  font-family:sans-serif
+}
+header img{
+ 
+  width: 20em;
+  height: 20em;
+
+  
+  
+  
+}
+
+.Firsthead{
+  display: flex;
+  gap: 15%;
+  padding-top: 60px;
+  background: linear-gradient(to right, #e2e8f0 , #d4d4d4, #a8a29e); 
+}
+.Newanime p{
+ font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+ color: #020617;
+
+}
+.Newanime{
+  margin-left: 5%;
+}
+.Section_Anime_Day{
+  background: linear-gradient(to right ,#e2e8f0 , #d4d4d4, #a8a29e);
+}
+.Title_Anime{
+  color: #475569;
+  margin-left: 5%;
+
+}
+.TitleAnime{
+  display: flex;
+  flex-direction: row;
+}
+.Button_Header{
+  display: flex;
+  flex-direction: row;
+  gap: 2%;
+}
+.fetchin-dataAnime {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 5000px; /* Adjust this width as needed */
+  margin-top: 20px; /* Add margin for spacing */
+}
+.fetchin-dataAnime > div {
+  width: calc(25% - 10px); /* Set width for each item (25% width with some margin) */
+  margin-bottom: 20px; /* Add bottom margin for spacing */
+  box-sizing: border-box; /* Include padding and border in the width */
+  border: 1px solid #ccc; /* Add a border for visual separation */
+  text-align: center; /* Center the content */
+  padding: 10px; /* Add padding for content spacing */
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center the content horizontally */
+}
+/* CSS */
+.anime-container {
+  position: relative;
+  display: inline-block;
+}
+
+.image-container {
+  position: relative;
+ 
+  
+}
+.image-container img{
+  
+  height: 19em;
+  margin-left: 2em;
+
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 20px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  height: 19em;
+}
+
+.anime-container:hover .overlay {
+  opacity: 1;
+}
+.overlay .btn-watche-save{
+ 
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+.zone-recherch{
+  display: flex;
+  flex-direction: row;
+  gap: 1px;
+}
+.zone-recherch input{
+  position: relative;
+}
+.zone-recherch select{
+  position: absolute;
+  margin-left: 13em;
+  
+  text-align: center;
+  
+}
+.icon{
+  color: #cbd5e1;
+  height: 2em;
+  
+}
+.icon:hover{
+  color: #64748b;
 }
