@@ -1,0 +1,13 @@
+.swiper-scrollbar-drag{
+    display: none;
+}
+.swiper-scrollbar-horizontal{
+    display: none;
+}
+.swiper-pagination-bullet-active{
+    display: none;
+}
+.swiper-pagination {
+margin: 0;
+display: none;
+}

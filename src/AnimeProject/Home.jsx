@@ -3,7 +3,8 @@
 import React from "react";
 
 import ListAnime from './ListAnime';
-import Attack from './Attackontitan-removebg-preview.png'
+import Attack from './ErynYager.png';
+import claoud from './—Pngtree—floating realistic clouds_8623463.png';
 
 
 
@@ -26,8 +27,8 @@ export default function Homme({dataAnime }){
       <header className="Firsthead" >
       <div className="Newanime">
         <h1 className="first-line:uppercase first-line:tracking-widest
-  first-letter:text-7xl first-letter:font-bold first-letter:text-slate-900
-  first-letter:mr-3 first-letter:float-left ">Attack on titan</h1>
+  first-letter:text-7xl first-letter:font-bold first-letter:text-neutral-50
+  first-letter:mr-3 first-letter:float-left "><span style={{color:"#fafafa",fontFamily:"Cambria, Cochin, Georgia, Times, 'Times New Roman', serif"}}>Attack on titan</span></h1>
         <p>Enter a world where humanity's last stand 
                 is against colossal Titans.<br></br>
                  Attack on Titan follows Eren and friends in
@@ -45,6 +46,7 @@ export default function Homme({dataAnime }){
         
         <div className="TitleAnime ">
           
+        <img src={claoud} alt="claoud" style={{maxWidth:"10em",backgroundSize:"cover"}}></img>
         <img src={Attack} alt ="Attack" media="(max-width: 1920px)"></img>
        
         
@@ -64,7 +66,7 @@ export default function Homme({dataAnime }){
 
         </header>
         <section className="Section_Anime_Day">
-            <p className="Title_Anime">Fall anime is here!</p> 
+            <p className="Title_Anime">Most Popular Anime</p> 
             <div className="Fall_Anime">
               <ListAnime dataAnime={dataAnime} />
                

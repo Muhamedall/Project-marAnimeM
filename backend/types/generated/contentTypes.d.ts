@@ -775,6 +775,43 @@ export interface ApiProductProduct extends Schema.CollectionType {
   };
 }
 
+export interface ApiProductsNarutoProductsNaruto extends Schema.CollectionType {
+  collectionName: 'products_narutos';
+  info: {
+    singularName: 'products-naruto';
+    pluralName: 'products-narutos';
+    displayName: 'products-naruto';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Title: Attribute.String & Attribute.Required;
+    description: Attribute.String & Attribute.Required;
+    rate: Attribute.Decimal & Attribute.Required;
+    quantite: Attribute.Integer & Attribute.Required;
+    prixHabituel: Attribute.Decimal & Attribute.Required;
+    prixSolde: Attribute.Decimal & Attribute.Required;
+    image: Attribute.Media & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::products-naruto.products-naruto',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::products-naruto.products-naruto',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiStagaireStagaire extends Schema.CollectionType {
   collectionName: 'stagaires';
   info: {
@@ -827,6 +864,7 @@ declare module '@strapi/types' {
       'api::anime.anime': ApiAnimeAnime;
       'api::myproject.myproject': ApiMyprojectMyproject;
       'api::product.product': ApiProductProduct;
+      'api::products-naruto.products-naruto': ApiProductsNarutoProductsNaruto;
       'api::stagaire.stagaire': ApiStagaireStagaire;
     }
   }

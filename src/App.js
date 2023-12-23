@@ -4,11 +4,13 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Manga from './AnimeProject/Manga';
+import Shop from './AnimeProject/Shoping/Shop';
 import NavBar from './AnimeProject/NavBar';
 import Homme from './AnimeProject/Home';
 import MoviesAnime from './AnimeProject/MoviesAnime';
 import Fromuser from './AnimeProject/Formuser';
+import Login from './AnimeProject/Login';
+
 
 function App() {
   const [dataAnime, setDataAnime] = useState({ listanime: [] });
@@ -35,9 +37,10 @@ function App() {
                 <Route path="/" element={<NavBar  dataAnime={dataAnime}/>}/>
 
                 <Route index element={<Homme dataAnime={dataAnime}  />}/>
-                <Route path="Manga" element={<Manga/>}/>
+                <Route path="Manga" element={<Shop/>}/>
                 <Route path="MoviesAnime" element={<MoviesAnime/>}/>
                 <Route path='Fromuser' element={<Fromuser/>}/>
+                <Route path="Login" element={<Login/>}/>
 
 
 

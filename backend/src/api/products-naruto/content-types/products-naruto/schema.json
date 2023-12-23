@@ -1,0 +1,51 @@
+{
+  "kind": "collectionType",
+  "collectionName": "products_narutos",
+  "info": {
+    "singularName": "products-naruto",
+    "pluralName": "products-narutos",
+    "displayName": "products-naruto",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "string",
+      "required": true
+    },
+    "rate": {
+      "type": "decimal",
+      "required": true
+    },
+    "quantite": {
+      "type": "integer",
+      "required": true
+    },
+    "prixHabituel": {
+      "type": "decimal",
+      "required": true
+    },
+    "prixSolde": {
+      "type": "decimal",
+      "required": true
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}
