@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 import 'swiper/css';
@@ -8,13 +9,24 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
+import Naruto from './NarutoPic.png';
+import Kurama from './Kurama.png';
 
 const ListProductsNaruto = ({ dataProductsNaruto }) => {
     
   return (
     <>
+    <div className='mt-3 w-100 h-15 Categorie-Naruto bg-amber-400   '>
+     
+  
+    <h1 className='text-center font-serif'>🥷 NARUTO 🥷</h1>
+    <p className='text-center font-serif'>Kakashi, Sasuke, Naruto the unpredictable... All your favorite ninjas are there!</p>
+   
+    </div>
     
-    <Swiper
+    <Swiper  className=' w-100'
     
     modules={[Navigation, Pagination, Scrollbar, A11y]}
     spaceBetween={50}
@@ -27,29 +39,40 @@ const ListProductsNaruto = ({ dataProductsNaruto }) => {
     onSlideChange={() => console.log('slide change')}
     
     >
+     
       {dataProductsNaruto.ListPrNaruto.map((data,index)=>(
-        <SwiperSlide key={index} >
+        <SwiperSlide key={index}  >
+          <Link to={`/detail/${data.attributes.Title}`}>
 
-              <img className=''
+              <img className="shadow-2xl "
                 
                 src={`http://localhost:1337${data.attributes.image.data.attributes.url}`}
                 alt={data.attributes.Title}
                 style={{ maxWidth: "70%" }}
-              />
-              <div>
-              <p className=" text-center underline font-mono ml-12 w-50  mt-4 ">{data.attributes.Title}</p>
-              <div className='m-0  ml-7 w-20 flex flex-row gap-5 '>
-              <span>{data.attributes.prixSolde}€</span><span>{data.attributes.prixHabituel} €</span>
+              /></Link>
+              <div className='grid justify-items-center mr-24 gap-2'>
+              <p className=" text-center underline font-mono ">{data.attributes.Title}</p>
+              <div className=' flex flex-row gap-3 '>
+              <span className='line-through'>{data.attributes.prixSolde} €</span><span>{data.attributes.prixHabituel} €</span>
               </div>
+              
+              <span>{data.attributes.rate}<FontAwesomeIcon icon={faStar} /></span>
               </div>
         </SwiperSlide>
        
 
       ))}
-      
+     
      
    
     </Swiper>
+    <div className='mt-3 w-100 h-15 Categorie-Naruto bg-amber-400   '>
+     
+  
+     <h1 className='text-center font-serif'>🥷 NARUTO 🥷</h1>
+    
+     </div>
+     
 
 
 

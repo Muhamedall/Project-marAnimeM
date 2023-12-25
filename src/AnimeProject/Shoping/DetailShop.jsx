@@ -1,14 +1,57 @@
-const movies =()=>{
-    return(
+import { useParams } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+
+const DetailShop = ({ dataProductsNaruto }) => {
+    const { productNam } = useParams();
+
+    const filteredProduct = dataProductsNaruto.ListPrNaruto.filter(data =>
+        data.attributes.Title.trim().toLowerCase() === productNam.trim().toLowerCase()
+    );
+    const handelShow =(e)=>{
+        e.preventDefault();
+        document.querySelector("#formulair").style.display="block"
+
+
+    }
+
+    return (
         <>
-        <div class="relative py-16 bg-gradient-to-br from-sky-50 to-gray-200">  
-    <div class="relative container m-auto px-6 text-gray-500 md:px-12 xl:px-40">
-        <div class="m-auto md:w-8/12 lg:w-6/12 xl:w-6/12">
-            <div class="rounded-xl bg-white shadow-xl">
-                <div class="p-6 sm:p-16">
+        <div className='Information-Product flex flex-row gap-3'>
+            <div>
+                <h1 className='text-center'>Shop now !</h1>
+            <h1>Detail of {productNam}</h1>
+            {filteredProduct.length > 0 ? (
+                <div>
+                    <p className="">{filteredProduct[0].attributes.Title}</p>
+                    <img className="shadow-2xl "
+                
+                src={`http://localhost:1337${filteredProduct[0].attributes.image.data.attributes.url}`}
+                alt={filteredProduct[0].attributes.Title}
+                style={{ maxWidth: "40%" }}
+              />
+                   
+                </div>
+            ) : (
+                <p>No product found</p>
+            )}
+            </div>
+            <div className='Information-Shop mt-9 '>
+            <button onClick={handelShow} class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-5 rounded-full">
+            <FontAwesomeIcon icon={faShoppingCart} /> Add to cart
+           </button>
+                
+
+            </div>
+
+            <div id='formulair' class=" w-30   hidden relative py-16 bg-gradient-to-br from-sky-50 to-gray-200">  
+    <div class="relative  container m-auto px-8 text-gray-500 md:px-12 xl:px-40">
+        <div class="">
+            <div class=" rounded-xl bg-white shadow-xl">
+                <div class=" p-6 sm:p-16">
                     <div class="space-y-4">
                         <img src="https://tailus.io/sources/blocks/social/preview/images/icon.svg" loading="lazy" class="w-10" alt="tailus logo"/>
-                        <h2 class="mb-8 text-2xl text-cyan-900 font-bold">Sign in to unlock the <br/> best of Tailus.</h2>
+                        <h2 class="mb-8 text-2xl text-cyan-900 font-bold">Your cart</h2>
                     </div>
                     <div class="mt-16 grid space-y-4">
                         <button class="group h-12 px-6 border-2 border-gray-300 rounded-full transition duration-300 
@@ -46,8 +89,9 @@ const movies =()=>{
     </div>
 </div>
 
-
+            </div>
         </>
-    )
-}
-export default movies;
+    );
+};
+
+export default DetailShop;

@@ -40,7 +40,7 @@ export default function Navbar({ dataAnime }) {
             
           </li>
           <li>
-          <Link to="Manga" className="linkTo">Shop</Link>
+          <Link to="Shop" className="linkTo">Shop</Link>
           </li>
           <li>
           <FontAwesomeIcon className='icons'  style={{margin:"0",color:"white"}}type='submit' onClick={handelMouse} icon={faBookmark}/>
