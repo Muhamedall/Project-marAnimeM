@@ -3,6 +3,7 @@
 import React from "react";
 
 import ListAnime from './ListAnime';
+
 import Attack from './ErynYager.png';
 import claoud from './—Pngtree—floating realistic clouds_8623463.png';
 
@@ -17,12 +18,13 @@ import { faPlay } from '@fortawesome/free-solid-svg-icons';
 
 
 
-export default function Homme({dataAnime }){
+export default function Homme({searchTerm}){
+ 
 
 
     return(
         <>
-        
+       
     
       <header className="Firsthead" >
       <div className="Newanime">
@@ -65,22 +67,29 @@ export default function Homme({dataAnime }){
 
 
         </header>
-        <section className="Section_Anime_Day">
+        <section className="Section_Anime_Day ">
+          
             <p className="Title_Anime">Most Popular Anime</p> 
             <div className="Fall_Anime">
-              <ListAnime dataAnime={dataAnime} />
-               
+           
+              <ListAnime searchTerm={searchTerm}  />
               <div>
-             
+            
+
                 
               </div>
-
+            
             </div>
 
-
         </section>
+        
+       
 
          
+        <footer className="bg-slate-950 w-100 h-10 bg-red-200 p-4 sm:bg-red-400 md:bg-yellow-500 lg:bg-orange-500 xl:bg-red-500">
+
+          <h1 className="text-center text-slate-50 ">Foooter </h1>
+        </footer>
         
         </>
         

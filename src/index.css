@@ -32,18 +32,21 @@ code {
   background-color: black;
   display: flex; 
  flex-direction: row;
-padding: 1em;
- 
-  gap: 2em;
+
+ padding: 3px;
+  gap: 3em;
   
 }
 .NavbarHome .linkTo{
   
    color: white;
-   padding: 2em;
+   padding: 4px;
    text-decoration: none;
    font-family:cursive;
   
+}
+.linkTo:hover{
+  color: #fef08a;
 }
 .NavbarHome li{
   margin-top: 10px;
@@ -113,7 +116,7 @@ header img{
   font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 .fetchin-dataAnime > div {
-  width: calc(25% - 10px); 
+  width: calc(25% - 3%); 
 }
 
 .container {
@@ -129,14 +132,20 @@ header img{
 
 .image-container {
   position: relative;
+
  
   
 }
 .image-container img{
   
-  height: 19em;
+
   margin-left: 2em;
 
+  height: 17em;
+
+  
+
+ 
 }
 
 .overlay {
@@ -193,14 +202,7 @@ header img{
 }
 
 
-.icon{
-  color: #cbd5e1;
-  height: 2em;
-  
-}
-.icon:hover{
-  color: #64748b;
-}
+
 .alert-suc{
   width: 33em;
   
@@ -215,6 +217,4 @@ header img{
   z-index: 1;
   align-items: center;
   background-color: white;
-}
-.model{
 }

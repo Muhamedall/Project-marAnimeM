@@ -2,7 +2,7 @@ import './shopStyle.css';
 import ListProductsNaruto from './ListProductsNaruto';
 
 
-const Shop =({dataProductsNaruto})=>{
+const Shop =()=>{
    
  return(
   <>
@@ -11,7 +11,7 @@ const Shop =({dataProductsNaruto})=>{
   </header>
   <section className='Naruto-section'>
    
-    <ListProductsNaruto dataProductsNaruto={dataProductsNaruto}/>
+    <ListProductsNaruto />
 
   
     

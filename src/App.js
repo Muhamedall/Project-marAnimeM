@@ -1,9 +1,9 @@
+// App.js
 
-import React, { useState, useEffect } from "react";
-
-import axios from "axios";
-
+import React from 'react';
+import { useState } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import DataApiContext from './AnimeProject/ContextApi/DataApi';
 import Shop from './AnimeProject/Shoping/Shop';
 import NavBar from './AnimeProject/NavBar';
 import Homme from './AnimeProject/Home';
@@ -11,71 +11,33 @@ import MoviesAnime from './AnimeProject/MoviesAnime';
 import Fromuser from './AnimeProject/Formuser';
 import Login from './AnimeProject/Login';
 import DetailShop from './AnimeProject/Shoping/DetailShop';
+import SaveAnime from './AnimeProject/SaveAnime';
+import DataShoping from './AnimeProject/Shoping/DataShoping';
 
 
 function App() {
-  const [dataAnime, setDataAnime] = useState({ listanime: [] });
+    const [searchTerm, setSearchTerm] = useState('');
 
-  useEffect(() => {
-    axios.get('http://localhost:1337/api/animes?populate=*')
-      .then((response) => {
-          setDataAnime({ listanime: response.data.data });
-      })
-
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  }, []);
     
-
-  const [dataProductsNaruto ,setdataProductNaruto]=useState({ListPrNaruto:[]});
-  useEffect (()=>{
-      axios.get('http://localhost:1337/api/products-narutos?populate=*')
-      .then((response)=>{
-          setdataProductNaruto({ListPrNaruto:response.data.data});
-
-      })
-      .catch((error)=>{
-          console.error("Error fetching data !",error);
-
-      })
-  },[])
-
-
-  
+  const handleSearchChange = (term) => {
+    setSearchTerm(term);
+  };
   return (
-  <>
-  <BrowserRouter>
-  <NavBar /> 
+    <DataApiContext>
+      <BrowserRouter>
+        <NavBar  onSearchChange={handleSearchChange}  />
         <Routes>
-            <Route>
-                <Route path="/" element={<NavBar  dataAnime={dataAnime}/>}/>
-
-                <Route index element={<Homme dataAnime={dataAnime}  />}/>
-                <Route path="Shop" element={<Shop dataProductsNaruto={dataProductsNaruto}/>}/>
-                <Route path="MoviesAnime" element={<MoviesAnime/>}/>
-                <Route path='Fromuser' element={<Fromuser/>}/>
-                <Route path="Login" element={<Login/>}/>
-                <Route path="/detail/:productNam" element={<DetailShop dataProductsNaruto={dataProductsNaruto}/>}/>
-
-
-
-
-
-            </Route>
-
-
-
-
+          <Route path="/" element={<Homme searchTerm={searchTerm}/>} />
+          <Route path="Shop" element={<Shop />} />
+          <Route path="MoviesAnime" element={<MoviesAnime />} />
+          <Route path='Fromuser' element={<Fromuser />} />
+          <Route path="Login" element={<Login />} />
+          <Route path="/detail/:productNam" element={<DetailShop />} />
+          <Route path="SaveAnime" element={<SaveAnime />} />
+          <Route path="Datashoping" element={<DataShoping />} />
         </Routes>
-        
-        
-        
-        
-        </BrowserRouter>
-  
-  
-  </>
+      </BrowserRouter>
+    </DataApiContext>
   );
 }
 
