@@ -677,6 +677,39 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiAmimeTwoeAmimeTwoe extends Schema.CollectionType {
+  collectionName: 'amime_twoes';
+  info: {
+    singularName: 'amime-twoe';
+    pluralName: 'amime-twoes';
+    displayName: 'AmimeTwoe';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    description: Attribute.String & Attribute.Required;
+    image: Attribute.Media & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::amime-twoe.amime-twoe',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::amime-twoe.amime-twoe',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiAnimeAnime extends Schema.CollectionType {
   collectionName: 'animes';
   info: {
@@ -861,6 +894,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::amime-twoe.amime-twoe': ApiAmimeTwoeAmimeTwoe;
       'api::anime.anime': ApiAnimeAnime;
       'api::myproject.myproject': ApiMyprojectMyproject;
       'api::product.product': ApiProductProduct;

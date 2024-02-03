@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "amime_twoes",
+  "info": {
+    "singularName": "amime-twoe",
+    "pluralName": "amime-twoes",
+    "displayName": "AmimeTwoe",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "string",
+      "required": true
+    },
+    "image": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    }
+  }
+}

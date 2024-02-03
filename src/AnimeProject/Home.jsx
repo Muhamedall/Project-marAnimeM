@@ -86,7 +86,7 @@ export default function Homme({searchTerm}){
        
 
          
-        <footer className="bg-slate-950 w-100 h-10 bg-red-200 p-4 sm:bg-red-400 md:bg-yellow-500 lg:bg-orange-500 xl:bg-red-500">
+        <footer className="bg-slate-950 w-100 h-10 ">
 
           <h1 className="text-center text-slate-50 ">Foooter </h1>
         </footer>

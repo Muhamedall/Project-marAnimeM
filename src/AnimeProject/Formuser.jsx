@@ -1,6 +1,7 @@
 //Form.jsx
 import { useRef, useState } from "react";
-
+import gojoPictur from './Gojo1.png';
+import friendGojo from './Freind-gojo1.png';
 const Form = () => {
   const nameRef = useRef("");
   const emailRef = useRef("");
@@ -83,6 +84,10 @@ const Form = () => {
 
   return (
     <>
+    <div className="images flex flex-wrap ml-40   absolute ">
+    <img  className =""src={gojoPictur}  alt=""></img>
+    <img className ="   ml-80" src={friendGojo} alt=""></img>
+    </div>
       {successMessage && (
         <div className="alert-suc bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert">
           <div className="flex">
@@ -167,6 +172,7 @@ const Form = () => {
         </div>
         
       </form>
+    
     </>
   );
 };

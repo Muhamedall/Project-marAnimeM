@@ -1,3 +1,4 @@
+//Shop.jsx
 import './shopStyle.css';
 import ListProductsNaruto from './ListProductsNaruto';
 

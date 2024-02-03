@@ -1,23 +1,30 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useRef } from 'react';
 
 
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Typography,
-  Button,
-} from "@material-tailwind/react";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/swiper-bundle.css';
+import 'swiper/css/bundle';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
 
 
-import { DataApi } from './ContextApi/DataApi';
+
+
+
+
+
+import { DataApi  } from './ContextApi/DataApi';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBookmark, faPlay } from '@fortawesome/free-solid-svg-icons';
+
 
 const  ListAnime=({searchTerm})=>
  {
   const [hoveredIdx, setHoveredIdx] = useState(null);
+  const originalStyles = useRef({});
   
   const handleMouseEnter = (idx) => {
     setHoveredIdx(idx);
@@ -40,30 +47,41 @@ const  ListAnime=({searchTerm})=>
   const contextData = useContext(DataApi);
 
   
-  if (!contextData || !contextData.dataAnime) {
+  if (!contextData || !contextData.dataAnime || !contextData.dataAnimeTwo) {
    
     return <div>Loading...</div>; 
   }
 
   const { dataAnime } = contextData;
-
+  const {dataAnimeTwo}=contextData;
  
   const listAnimeData = dataAnime.listanime || [];
 
  
+
+  const listAnimeTwo=dataAnimeTwo.listAnimeTwo||[];
+
+
+
+  
   const filteredList = listAnimeData.filter(
     (data) =>
-      data.attributes.Title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      data.attributes.description.toLowerCase().includes(searchTerm.toLowerCase())
+      data.attributes.Title.toLowerCase().includes(searchTerm.toLowerCase()) || 
+      data.attributes.description.toLowerCase().includes(searchTerm.toLowerCase()) 
+  );
+  const filteredListAnimeTwe = listAnimeTwo.filter(
+    (data) =>
+      data.attributes.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
+      data.attributes.description.toLowerCase().includes(searchTerm.toLowerCase()) 
   );
 
+
   return (
+    <>
     <div className="container">
-      <div className="search-bar mb-4">
-        
-      </div>
+    
       <div className="fetchin-dataAnime">
-        
+       
         {filteredList.map((data, idx) => (
           <div
             key={idx}
@@ -102,29 +120,70 @@ const  ListAnime=({searchTerm})=>
           </div>
         ))}
       </div>
-      <p className="Title_Anime">More Anime</p> 
-      <Card className="mt-6 w-96">
-      <CardHeader color="blue-gray" className="relative h-56">
-        <img
-          src="https://images.unsplash.com/photo-1540553016722-983e48a2cd10?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80"
-          alt="card-image"
-        />
-      </CardHeader>
-      <CardBody>
-        <Typography variant="h5" color="blue-gray" className="mb-2">
-          UI/UX Review Check
-        </Typography>
-        <Typography>
-          The place is close to Barceloneta Beach and bus stop just 2 min by
-          walk and near to &quot;Naviglio&quot; where you can enjoy the main
-          night life in Barcelona.
-        </Typography>
-      </CardBody>
-      <CardFooter className="pt-0">
-        <Button>Read More</Button>
-      </CardFooter>
-    </Card>
-    </div>
+      </div>
+      
+
+
+        
+       <p className="Title_Anime">More Anime</p>
+        < >
+        
+        <Swiper
+          className='w-100 container   '
+          modules={[Navigation, Pagination, Scrollbar, A11y]}
+          spaceBetween={0}
+          slidesPerView={4}
+          navigation
+          pagination={{ clickable: true }}
+          scrollbar={{ draggable: true }}
+          onSwiper={(swiper) => console.log(swiper)}
+          onSlideChange={() => console.log('slide change')}
+        >
+          {filteredListAnimeTwe.map((data, keys) => (
+            <SwiperSlide key={keys} className='  image-container mb-4 anime-container transition duration-500 ease-in-out hover:transform hover:-translate-y-1 hover:scale-110'>
+              <div
+                key={keys}
+                className="anime-container transition duration-500 ease-in-out hover:transform hover:-translate-y-1 hover:scale-110"
+                onMouseEnter={() => handleMouseEnter(keys)}
+                onMouseLeave={handleMouseLeave}
+              >
+                <img className='h-4 rounded-lg mt-3' src={`http://localhost:1337${data.attributes.image.data.attributes.url}`} alt='' style={{ maxWidth: '70%' }} />
+                <p className="text-center font-mono text-slate-50">{data.attributes.title}</p>
+
+                {hoveredIdx === keys && (
+                  <div className="overlays text-center p-3">
+                    <p>{data.attributes.description}</p>
+                    <div className="btn-watche-save">
+                      <FontAwesomeIcon
+                        className="mt-3 text-yellow-100 h-8 hover:text-yellow-300"
+                        type="submit"
+                        onClick={handelWatch}
+                        icon={faPlay}
+                      />
+                      <FontAwesomeIcon
+                        className="mt-3 text-yellow-100 h-8 hover:text-yellow-300"
+                        type="submit"
+                        onClick={handelSave}
+                        icon={faBookmark}
+                      />
+                    </div>
+                  </div>
+                )}
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+        </>
+        
+        
+    
+     
+        
+      
+   
+        </>
+   
+   
   );
   
 }

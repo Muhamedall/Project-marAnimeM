@@ -1,6 +1,8 @@
+//Navabar.jsx
 import { Link, Outlet } from "react-router-dom";
 import React, { useContext,useState } from 'react';
-import { DataApi } from './ContextApi/DataApi';
+import { CarteContext } from "./Shoping/Cartecontext";
+
 import { useRef} from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBookmark } from '@fortawesome/free-solid-svg-icons';
@@ -13,6 +15,8 @@ import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 
 export default function Navbar({ onSearchChange }) {
+  const { cartTotalQuantity } = useContext(CarteContext);
+
  
   const searchRef = useRef('');
 
@@ -69,13 +73,7 @@ export default function Navbar({ onSearchChange }) {
             name="search"
             autoComplete="off"
           />
-            <select name="Select-Choix" className=" h-8 rounded-md py-1 pt-1  pr-3 shadow-sm  ">
-              <option value="0">---choisi--</option>
-              <option value="Anime">Anime</option>
-              <option value="Movies">Movies</option>
-              <option value="Manga">Manga</option>
-             
-            </select>
+           
            
             
            
@@ -85,8 +83,10 @@ export default function Navbar({ onSearchChange }) {
        
           </label>
           <li>
-            <Link to="DataShoping" className="linkTo" > <FontAwesomeIcon className='text-slate-50 w-10 ' icon={faShoppingCart}  /> </Link>
-
+          <Link to="Cartetdisplay" className="linkTo">
+              <FontAwesomeIcon className="text-slate-50 w-10" icon={faShoppingCart} />
+              <span>{cartTotalQuantity}</span>
+            </Link>
           </li>
           <li>
             <Link to="Fromuser" className="linkTo " >Sign up</Link>

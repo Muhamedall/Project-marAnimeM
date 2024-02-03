@@ -1,3 +1,4 @@
+//ListProductsNaruto.jsx
 import React from 'react';
 import { useContext } from 'react';
 
@@ -14,9 +15,10 @@ import 'swiper/css/scrollbar';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
-
+import { CarteContext } from '../Shoping/Cartecontext';
 const ListProductsNaruto = () => {
   const contextData = useContext(DataApi);
+  const { addToCart } = useContext(CarteContext);
 
   // Check if dataProductsNaruto is not undefined before accessing its properties
   const { dataProductsNaruto } = contextData ?? {};
@@ -58,6 +60,9 @@ console.log("List Product Data:", listProductData);
                       style={{ maxWidth: '70%' }}
                     />
                   )}
+                  <button onClick={() => addToCart(data)} className="add-to-cart-button">
+                Add to Cart
+              </button>
                 </Link>
                 <div className='grid justify-items-center mr-24 gap-2'>
                   <p className='text-center underline font-mono'>{data.attributes.Title}</p>
