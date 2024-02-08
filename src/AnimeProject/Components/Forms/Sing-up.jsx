@@ -1,7 +1,7 @@
 //Form.jsx
 import { useRef, useState } from "react";
-import gojoPictur from './Gojo1.png';
-import friendGojo from './Freind-gojo1.png';
+import Foter from "../Foter";
+
 const Form = () => {
   const nameRef = useRef("");
   const emailRef = useRef("");
@@ -84,10 +84,7 @@ const Form = () => {
 
   return (
     <>
-    <div className="images flex flex-wrap ml-40   absolute ">
-    <img  className =""src={gojoPictur}  alt=""></img>
-    <img className ="   ml-80" src={friendGojo} alt=""></img>
-    </div>
+   
       {successMessage && (
         <div className="alert-suc bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert">
           <div className="flex">
@@ -104,7 +101,7 @@ const Form = () => {
         </div>
       )}
       
-      <form className=" form-containair " onSubmit={handleSubmit}>
+      <form style={{maxWidth:'50%',marginLeft:'25%' ,marginTop:"10%"}} className="  bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 " onSubmit={handleSubmit}>
         <div className=" model flex flex-wrap -mx-3 mb-6">
           <div className="  w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label htmlFor="grid-first-name" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
@@ -172,7 +169,9 @@ const Form = () => {
         </div>
         
       </form>
-    
+      <footer>
+        <Foter/>
+      </footer>
     </>
   );
 };

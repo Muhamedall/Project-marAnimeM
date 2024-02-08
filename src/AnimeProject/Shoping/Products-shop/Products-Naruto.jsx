@@ -2,7 +2,7 @@
 import React from 'react';
 import { useContext } from 'react';
 
-import { DataApi } from '../ContextApi/DataApi';
+import { DataApi } from '../../Components/ContextApi/Data-context-Api';
 import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
@@ -15,10 +15,10 @@ import 'swiper/css/scrollbar';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
-import { CarteContext } from '../Shoping/Cartecontext';
+
 const ListProductsNaruto = () => {
   const contextData = useContext(DataApi);
-  const { addToCart } = useContext(CarteContext);
+
 
   // Check if dataProductsNaruto is not undefined before accessing its properties
   const { dataProductsNaruto } = contextData ?? {};
@@ -60,15 +60,13 @@ console.log("List Product Data:", listProductData);
                       style={{ maxWidth: '70%' }}
                     />
                   )}
-                  <button onClick={() => addToCart(data)} className="add-to-cart-button">
-                Add to Cart
-              </button>
+                  
                 </Link>
                 <div className='grid justify-items-center mr-24 gap-2'>
                   <p className='text-center underline font-mono'>{data.attributes.Title}</p>
                   <div className='flex flex-row gap-3'>
-                    <span>{data.attributes.prixHabituel} €</span>
-                    <span className='line-through text-gray-400'>{data.attributes.prixSolde} €</span>
+                    <span>{data.attributes.prixHabituel} $</span>
+                    <span className='line-through text-gray-400'>{data.attributes.prixSolde} $</span>
                   </div>
                   <span>
                     {data.attributes.rate}

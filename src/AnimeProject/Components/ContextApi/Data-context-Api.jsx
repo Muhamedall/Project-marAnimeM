@@ -9,9 +9,9 @@ const DataApiContext = ({ children }) => {
   const [dataAnime, setDataAnime] = useState({ listanime: [] });
   const [dataProductsNaruto, setdataProductNaruto] = useState({ ListPrNaruto: [] });
   const [dataAnimeTwo, setdataAnimeTwo] = useState({ listAnimeTwo: [] });
-  const [carteItem ,setCarteItem]=useState([]);
-  const [cartTotalQuantite ,setcarteTotalQuantite]=useState(0);
-  const [carteTotalAmount ,setCarteTotalAmount]=useState(0);
+  const [Animefull ,setAnimeFull]=useState({listAnimeFull:[]});
+  const [Mangas ,setMangas]=useState({listManga:[]});
+
 
 
   //
@@ -45,13 +45,32 @@ const DataApiContext = ({ children }) => {
         console.error("Error fetching anime data:", error);
       });
   }, []);
+ useEffect(() => {
+    axios.get('https://api.jikan.moe/v4/manga')
+      .then((response) => {
+        setMangas({listManga:response.data.data})
+        
+      })
+      .catch((error) => {
+        console.error("Error fetching anime data:", error);
+      });
+  }, []);
 
 
-  console.log("Data from Anime API:", dataAnime);
-  console.log("Data from Products Naruto API:", dataProductsNaruto);
+
+  useEffect(() => {
+    axios.get('https://api.jikan.moe/v4/anime?populate=*')
+      .then((response) => {
+        setAnimeFull({ listAnimeFull: response.data.data });
+      })
+      .catch((error) => {
+        console.error("Error fetching anime data:", error);
+      });
+  }, []);
+
 
   return (
-    <DataApi.Provider value={{ dataAnime, dataProductsNaruto ,dataAnimeTwo}}>
+    <DataApi.Provider value={{ dataAnime, dataProductsNaruto ,dataAnimeTwo ,Animefull,Mangas}}>
       {children}
     </DataApi.Provider>
   );

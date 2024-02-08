@@ -10,7 +10,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url('./AnimeProject/—Pngtree—floating\ realistic\ clouds_8623463.png');
+  background-image: url('./AnimeProject//Components/Picturs/—Pngtree—floating\ realistic\ clouds_8623463.png');
   background-size:contain;
 
 }
@@ -249,3 +249,8 @@ header img{
 }
 
 
+.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+  /* You can customize the styling for the disabled state */
+}

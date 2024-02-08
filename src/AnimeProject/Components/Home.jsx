@@ -2,11 +2,11 @@
 
 import React from "react";
 
-import ListAnime from './ListAnime';
+import ListAnime from './Anime/ListAnime';
 
-import Attack from './ErynYager.png';
-import claoud from './—Pngtree—floating realistic clouds_8623463.png';
-
+import Attack from './Picturs/ErynYager.png';
+import claoud from './Picturs/—Pngtree—floating realistic clouds_8623463.png';
+import Foter from './Foter';
 
 
 
@@ -86,9 +86,9 @@ export default function Homme({searchTerm}){
        
 
          
-        <footer className="bg-slate-950 w-100 h-10 ">
+        <footer >
 
-          <h1 className="text-center text-slate-50 ">Foooter </h1>
+          <Foter/>
         </footer>
         
         </>

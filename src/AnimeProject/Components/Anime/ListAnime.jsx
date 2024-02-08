@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef } from 'react';
+import React, { useContext, useState } from 'react';
 
 
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -9,14 +9,12 @@ import 'swiper/css/bundle';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
+import {SaveContext} from '../Savin-folder/SaveContext';
+import { Link } from 'react-router-dom';
 
 
 
-
-
-
-
-import { DataApi  } from './ContextApi/DataApi';
+import { DataApi  } from '../ContextApi/Data-context-Api';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBookmark, faPlay } from '@fortawesome/free-solid-svg-icons';
 
@@ -24,7 +22,8 @@ import { faBookmark, faPlay } from '@fortawesome/free-solid-svg-icons';
 const  ListAnime=({searchTerm})=>
  {
   const [hoveredIdx, setHoveredIdx] = useState(null);
-  const originalStyles = useRef({});
+  const { addToSave  } = useContext(SaveContext);
+  
   
   const handleMouseEnter = (idx) => {
     setHoveredIdx(idx);
@@ -34,15 +33,9 @@ const  ListAnime=({searchTerm})=>
     setHoveredIdx(null);
   };
 
-  const handelWatch = (e) => {
-    e.preventDefault();
-    console.log("Watch clicked!");
-  };
 
-  const handelSave = (e) => {
-    e.preventDefault();
-    console.log("Save clicked!");
-  };
+
+
 
   const contextData = useContext(DataApi);
 
@@ -71,7 +64,7 @@ const  ListAnime=({searchTerm})=>
   );
   const filteredListAnimeTwe = listAnimeTwo.filter(
     (data) =>
-      data.attributes.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
+      data.attributes.Title.toLowerCase().includes(searchTerm.toLowerCase()) || 
       data.attributes.description.toLowerCase().includes(searchTerm.toLowerCase()) 
   );
 
@@ -101,18 +94,19 @@ const  ListAnime=({searchTerm})=>
                 <div className="overlay text-center p-3">
                   <p>{data.attributes.description}</p>
                   <div className="btn-watche-save">
-                    <FontAwesomeIcon
+                  <Link to={`/Watche/${data.attributes.Title}`}> <FontAwesomeIcon
                       className="mt-3 text-yellow-100 h-8 hover:text-yellow-300 "
                       type="submit"
-                      onClick={handelWatch}
+                      
                       icon={faPlay}
-                    />
+                    /></Link>
                     <FontAwesomeIcon
-                      className="mt-3 text-yellow-100 h-8 hover:text-yellow-300"
-                      type="submit"
-                      onClick={handelSave}
-                      icon={faBookmark}
-                    />
+  className="mt-3 text-yellow-100 h-8 hover:text-yellow-300"
+  type="submit"
+  onClick={() => addToSave(data)}
+  icon={faBookmark}
+/>
+
                   </div>
                 </div>
               )}
@@ -148,22 +142,22 @@ const  ListAnime=({searchTerm})=>
                 onMouseLeave={handleMouseLeave}
               >
                 <img className='h-4 rounded-lg mt-3' src={`http://localhost:1337${data.attributes.image.data.attributes.url}`} alt='' style={{ maxWidth: '70%' }} />
-                <p className="text-center font-mono text-slate-50">{data.attributes.title}</p>
+                <p className="text-center font-mono text-slate-50">{data.attributes.Title}</p>
 
                 {hoveredIdx === keys && (
                   <div className="overlays text-center p-3">
                     <p>{data.attributes.description}</p>
                     <div className="btn-watche-save">
-                      <FontAwesomeIcon
+                    <Link to={`/Watche/${data.attributes.Title}`}><FontAwesomeIcon
                         className="mt-3 text-yellow-100 h-8 hover:text-yellow-300"
                         type="submit"
-                        onClick={handelWatch}
+                     
                         icon={faPlay}
-                      />
+                      /></Link>
                       <FontAwesomeIcon
                         className="mt-3 text-yellow-100 h-8 hover:text-yellow-300"
                         type="submit"
-                        onClick={handelSave}
+                        onClick={()=>addToSave(data)}
                         icon={faBookmark}
                       />
                     </div>

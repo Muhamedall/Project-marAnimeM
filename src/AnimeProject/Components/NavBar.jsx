@@ -1,14 +1,14 @@
 //Navabar.jsx
 import { Link, Outlet } from "react-router-dom";
-import React, { useContext,useState } from 'react';
-import { CarteContext } from "./Shoping/Cartecontext";
+import React, { useContext } from 'react';
+import { CarteContext } from "../Shoping/Card-shop/Carte-shop-context";
 
 import { useRef} from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBookmark } from '@fortawesome/free-solid-svg-icons';
 
 
-import logo from './06208cd1-478d-4b23-9165-4edc3a15b3e4-removebg-preview.png';
+import logo from './Picturs/06208cd1-478d-4b23-9165-4edc3a15b3e4-removebg-preview.png';
 
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
@@ -45,7 +45,7 @@ export default function Navbar({ onSearchChange }) {
             <Link to="/" className="linkTo ">Home</Link>
           </li>
           <li>
-          <Link to="MoviesAnime" className="linkTo">Movies</Link>
+          <Link to="Manga" className="linkTo">Manga</Link>
 
             
           </li>
@@ -53,7 +53,8 @@ export default function Navbar({ onSearchChange }) {
           <Link to="Shop" className="linkTo">Shop</Link>
           </li>
           <li>
-          <Link to="SaveAnime" ><FontAwesomeIcon className='text-slate-50 h-5 hover:text-yellow-300 h-5 mt-1  hover:text-yellow-300 '  type='submit' icon={faBookmark}/></Link>
+          <Link to="SaveAnime" ><FontAwesomeIcon className='text-slate-50 h-5 hover:text-yellow-300 h-5 mt-1  hover:text-yellow-300 '  type='submit'
+           icon={faBookmark}/></Link>
            
           </li>
           <label className="relative block">
@@ -66,7 +67,7 @@ export default function Navbar({ onSearchChange }) {
             className="h-8 placeholder:italic placeholder:text-slate-400 block bg-white w-full border 
               border-slate-300 rounded-md py-2 pt-1   pr-3 shadow-sm 
               focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
-            placeholder="Search for anything..."
+            placeholder="Search for anime.."
             type="text"
             onChange={handelChange}
             ref={searchRef}
@@ -83,13 +84,13 @@ export default function Navbar({ onSearchChange }) {
        
           </label>
           <li>
-          <Link to="Cartetdisplay" className="linkTo">
+          <Link to="Carte-shop" className="linkTo">
               <FontAwesomeIcon className="text-slate-50 w-10" icon={faShoppingCart} />
               <span>{cartTotalQuantity}</span>
             </Link>
           </li>
           <li>
-            <Link to="Fromuser" className="linkTo " >Sign up</Link>
+            <Link to="Sing-up" className="linkTo " >Sign up</Link>
 
           </li>
           <li>

@@ -1,6 +1,6 @@
 //Shop.jsx
 import './shopStyle.css';
-import ListProductsNaruto from './ListProductsNaruto';
+import ListProductsNaruto from './Products-shop/Products-Naruto';
 
 
 const Shop =()=>{

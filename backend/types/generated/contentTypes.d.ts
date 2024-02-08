@@ -689,7 +689,7 @@ export interface ApiAmimeTwoeAmimeTwoe extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    title: Attribute.String & Attribute.Required;
+    Title: Attribute.String & Attribute.Required;
     description: Attribute.String & Attribute.Required;
     image: Attribute.Media & Attribute.Required;
     createdAt: Attribute.DateTime;

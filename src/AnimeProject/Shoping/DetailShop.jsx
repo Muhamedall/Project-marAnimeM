@@ -1,13 +1,13 @@
 //DetailShop.jsx
 
 import { useContext } from 'react';
-import {DataApi } from '../ContextApi/DataApi';
+import {DataApi } from '../Components/ContextApi/Data-context-Api';
 import { useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
-import { CarteContext } from '../Shoping/Cartecontext';
-
+import { CarteContext } from './Card-shop/Carte-shop-context';
+import { faTruck } from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -40,10 +40,12 @@ const DetailShop = () => {
             )}
             <div>
             <h1 className="text-2xl font-serif">{filteredProduct[0].attributes.Title}</h1>
+            
             <div className=' flex flex-row gap-3 '>
               <span>{filteredProduct[0].attributes.prixHabituel} €</span><span className='line-through text-gray-400'>{filteredProduct[0].attributes.prixSolde} €</span>
               </div>
-              <h2 className='font-mono text-green-500'>Free Shipping </h2>
+             
+              <h2 className='font-mono text-green-500'> <FontAwesomeIcon icon={faTruck}  className='text-slate-950'/> Free Shipping </h2>
               <br></br>
               
               <button   onClick={()=>addToCart(filteredProduct[0])} className="shadow bg-slate-950 hover:bg-slate-700 focus:shadow-outline focus:outline-none text-white font-bold py-1 px-4 rounded">
