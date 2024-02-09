@@ -15,6 +15,7 @@ import Login from './AnimeProject/Components/Forms/Login';
 import DetailShop from './AnimeProject/Shoping/DetailShop';
 import SaveAnime from './AnimeProject/Components/Savin-folder/SaveAnime';
 import CartetShop  from './AnimeProject/Shoping/Card-shop/Card-shop';
+import Paye from './AnimeProject/Shoping/Paye-shop'
 import Notfound from './AnimeProject/Components/Not-found';
 function App() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -42,6 +43,7 @@ function App() {
 
             <Route path="SaveAnime" element={<SaveAnime />} />
             <Route path="Carte-Shop" element={<CartetShop/>} />
+            <Route path="Paye-shop" element={<Paye/>} />
             <Route path="*" element={<Notfound/>} />
             
 

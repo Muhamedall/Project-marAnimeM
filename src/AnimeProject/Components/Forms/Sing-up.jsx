@@ -105,7 +105,7 @@ const Form = () => {
         <div className=" model flex flex-wrap -mx-3 mb-6">
           <div className="  w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label htmlFor="grid-first-name" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-              User Name
+              User Name <span className="text-red-500">*</span>
             </label>
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
@@ -119,7 +119,7 @@ const Form = () => {
           </div>
           <div className="w-full md:w-1/2 px-3">
             <label htmlFor="grid-email" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-              Email
+              Email<span className="text-red-500">*</span>
             </label>
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -133,7 +133,7 @@ const Form = () => {
           </div>
           <div className="w-full px-3">
             <label htmlFor="grid-password" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-              Password
+              Password <span className="text-red-500">*</span>
             </label>
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -150,10 +150,10 @@ const Form = () => {
           </div>
           
     <div class="md:w-1/3"></div>
-    <label className="md:w-2/3 block text-slate-950 font-bold">
+    <label className="md:w-2/3 block text-slate-950 font-bold"> 
       <input className="mr-2 leading-tight" type="checkbox" name="chexInput" ref={acceptConditionRef}/>
       <span className="text-sm">
-      I agree to the Terms of Use and Privacy Policy
+      I agree to the Terms of Use and Privacy Policy <span className="text-red-500">*</span>
       {errorMessages.accept && <p style={{ color: "red" }}>{errorMessages.accept}</p>}
       </span>
       

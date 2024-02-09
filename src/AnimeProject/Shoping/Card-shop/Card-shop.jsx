@@ -43,7 +43,7 @@ const CarteContextDisplay = () => {
             Add products while you shop, so they'll be ready for checkout later.
           </span>
         </h2>
-        <Link to="/shop"> <button style={{marginLeft:'45%' , marginTop:'20%'}} className=' shadow bg-slate-950 hover:bg-slate-700 focus:shadow-outline focus:outline-none text-white font-bold py-1 px-4 rounded' > <FontAwesomeIcon icon={faBackward} /> Back shoping</button></Link>
+        <Link to="/shop"><button style={{marginLeft:'45%' , marginTop:'20%'}} className=' shadow bg-slate-950 hover:bg-slate-700 focus:shadow-outline focus:outline-none text-white font-bold py-1 px-4 rounded' > <FontAwesomeIcon icon={faBackward} /> Back shoping</button></Link>
         </>
       ) : (
         <h2 className='text-center font-serif text-2xl '>Cart </h2>
@@ -124,9 +124,9 @@ const CarteContextDisplay = () => {
           <div style={{ border: 'solid 1px black' }} className='mr-5 mt-3'>
             <p className='font-serif ml-3'>Subtotal <span className='ml-8 font-mono font-bold '>{total}$</span> </p>
             <p className='font-mono text-xs ml-3'>   marAnime items are eligible for free shipping <FontAwesomeIcon icon={faCheck} className='text-green-500' /> </p>
-            <button className='ml-60 mb-2 shadow bg-slate-950 hover:bg-slate-700 focus:shadow-outline focus:outline-none text-white font-bold py-1 px-4 ml-80 mt-30 rounded'>
+            <Link to="/Paye-shop"><button className='ml-60 mb-2 shadow bg-slate-950 hover:bg-slate-700 focus:shadow-outline focus:outline-none text-white font-bold py-1 px-4 ml-80 mt-30 rounded'>
               Order <FontAwesomeIcon icon={faTag} />
-            </button>
+            </button></Link>
           </div>
         </div>
       )}
