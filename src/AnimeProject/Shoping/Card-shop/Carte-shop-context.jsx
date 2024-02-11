@@ -1,11 +1,15 @@
-// CarteContext.jsx
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 
 export const CarteContext = createContext();
 
-
 export const CarteProvider = ({ children }) => {
-  const [cartItems, setCartItems] = useState([]);
+  // Load cart items from local storage if available, otherwise initialize as empty array
+  const [cartItems, setCartItems] = useState(JSON.parse(localStorage.getItem('cartItems')) || []);
+
+  // Update local storage whenever cart items change
+  useEffect(() => {
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+  }, [cartItems]);
 
   const addToCart = (item) => {
     const isItemInCart = cartItems.some((cartItem) => cartItem.id === item.id);
@@ -13,7 +17,6 @@ export const CarteProvider = ({ children }) => {
     if (!isItemInCart) {
       setCartItems([...cartItems, item]);
     }
-   
   };
 
   const removeFromCart = (itemId) => {

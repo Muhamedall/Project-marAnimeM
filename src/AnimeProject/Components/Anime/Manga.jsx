@@ -45,7 +45,7 @@ const Manga =()=>{
                 <div style={{width:'80%'}}>
                 <p className="font-serif" style={{width:'90%' ,marginTop:'30px'}}>{item.synopsis}</p><br></br>
                 <ul>
-                    <span className="font-bold">Tags :</span><br></br>
+                    <span className="font-bold">Tags </span><br></br>
                      
                             {item.genres.map((genre, index) => (
                                 <div key={index} style={{display:'inline-flex', padding:'3px'}}>

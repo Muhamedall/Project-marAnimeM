@@ -1,11 +1,13 @@
-// CarteContext.jsx
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 
-export const SaveContext= createContext();
-
+export const SaveContext = createContext();
 
 export const SaveProvider = ({ children }) => {
-  const [savestItems, setSavesItems] =useState([])
+  const [savestItems, setSavesItems] = useState(JSON.parse(localStorage.getItem('saveItems')) || []);
+
+  useEffect(() => {
+    localStorage.setItem('saveItems', JSON.stringify(savestItems));
+  }, [savestItems]);
 
   const addToSave = (item) => {
     const isItemInSaves = savestItems.some((saveItem) => saveItem.id === item.id);
@@ -13,7 +15,6 @@ export const SaveProvider = ({ children }) => {
     if (!isItemInSaves) {
       setSavesItems([...savestItems, item]);
     }
-   
   };
 
   const removeFromSaved = (itemId) => {
@@ -21,12 +22,11 @@ export const SaveProvider = ({ children }) => {
     setSavesItems(updatedSaves);
   };
 
- 
-
   return (
     <SaveContext.Provider value={{ savestItems, addToSave, removeFromSaved }}>
       {children}
     </SaveContext.Provider>
   );
 };
+
 export default SaveProvider;

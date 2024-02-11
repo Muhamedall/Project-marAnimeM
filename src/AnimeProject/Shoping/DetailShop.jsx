@@ -2,7 +2,7 @@
 
 import { useContext } from 'react';
 import {DataApi } from '../Components/ContextApi/Data-context-Api';
-import { useParams } from 'react-router-dom';
+import { useParams , useNavigate} from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
@@ -15,12 +15,18 @@ const DetailShop = () => {
     const products=useContext(DataApi)
     const { addToCart } = useContext(CarteContext);
     const { productNam } = useParams();
-
+    const navigate = useNavigate();
     const filteredProduct = products?.dataProductsNaruto?.ListPrNaruto.filter(data =>
         data.attributes.Title.trim().toLowerCase() === productNam.trim().toLowerCase()
     );
-    
+    const handleAddToCart = () => {
+        addToCart(filteredProduct[0]);
+        navigate('/Carte-shop');
+        // Redirect to shop component
 
+ 
+    };
+    
 
     return (
         <>
@@ -48,9 +54,10 @@ const DetailShop = () => {
               <h2 className='font-mono text-green-500'> <FontAwesomeIcon icon={faTruck}  className='text-slate-950'/> Free Shipping </h2>
               <br></br>
               
-              <button   onClick={()=>addToCart(filteredProduct[0])} className="shadow bg-slate-950 hover:bg-slate-700 focus:shadow-outline focus:outline-none text-white font-bold py-1 px-4 rounded">
+              <button   onClick={handleAddToCart} className="shadow bg-slate-950 hover:bg-slate-700 focus:shadow-outline focus:outline-none text-white font-bold py-1 px-4 rounded">
               <FontAwesomeIcon icon={faShoppingCart} /> Add to Cart
       </button>
+      
             
             </div>
            
