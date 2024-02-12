@@ -17,6 +17,7 @@ import SaveAnime from './AnimeProject/Components/Savin-folder/SaveAnime';
 import CartetShop  from './AnimeProject/Shoping/Card-shop/Card-shop';
 import Paye from './AnimeProject/Shoping/Paye-shop'
 import Notfound from './AnimeProject/Components/Not-found';
+
 function App() {
   const [searchTerm, setSearchTerm] = useState('');
 

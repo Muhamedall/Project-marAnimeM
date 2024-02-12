@@ -7,11 +7,10 @@ import { faBackward, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { faPaypal } from '@fortawesome/free-brands-svg-icons';
 
 import Foter from '../../Components/Foter';
-import filled from '@material-tailwind/react/theme/components/timeline/timelineIconColors/filled';
 
 const CarteContextDisplay = () => {
 
-  const { cartItems, removeFromCart } = useContext(CarteContext);
+  const { cartItems, removeFromCart,cleareCaret } = useContext(CarteContext);
   const [showcart ,setShowcart]=useState(false);
   const [payWithCard, setPayWithCard] = useState(true);
   //declartion useRef inputes 
@@ -47,6 +46,9 @@ const CarteContextDisplay = () => {
   const [successMessage, setSuccessMessage] = useState("");
 
 
+  const cardNumberRegex = /^[0-9]{16}$/;
+  const cvcRegex = /^[0-9]{3,4}$/;
+  const expDateRegex = /^(0[1-9]|1[0-2])\/([0-9]{2})$/;
 
   //Validation Formulair :
   const validForm = () => {
@@ -62,6 +64,10 @@ const CarteContextDisplay = () => {
       ];
       fields.forEach(({ ref, name, message }) => {
         const value = ref.current?.value?.trim();
+
+        const isValidCardNumber = cardNumberRegex.test(ref.current.value);
+        const isValideCvc=cvcRegex.test(ref.current.value);
+        const isValidDate=expDateRegex.test(ref.current.value)
         if (!value || value === "") {
           errors[name] = message;
           if (ref.current) {
@@ -69,7 +75,19 @@ const CarteContextDisplay = () => {
           }
         } else if (name === "Email" && !value.match(/^\S+@\S+\.\S+$/)) {
           errors[name] = "Please enter a valid email address.";
-        } else {
+        }else if(name==="Numero" && !isValidCardNumber){
+          errors[name] ="Please enter a valid card number (16 digits)."
+
+        }
+        else if(name==="Cvc" && !isValideCvc){
+          errors[name] ="Invalid CVC"
+
+        }
+        else if(name==="Exper_Date" && !isValidDate){
+          errors[name]="Invalid date (ex:01/38)" 
+
+        }
+         else {
           errors[name] = "";
           if (ref.current) {
             ref.current.style.border = ""; // Reset border style
@@ -79,6 +97,7 @@ const CarteContextDisplay = () => {
     } else {
       //Valid with  PayPal 
       const fields = [
+
         { ref: nmbCardPaypal, name: "NumeroPaypal", message: "Enter a card number" },
         { ref: experDatePaypal, name: "Exper_DatePay", message: "Enter a valid expiration date" },
         { ref: cvcPay, name: "CvcPay", message: "Enter the CVV or security code on your card" },
@@ -119,8 +138,16 @@ const CarteContextDisplay = () => {
         setTimeout(() => {
           setSuccessMessage("");
           cartItems.length=0
+          cleareCaret()
         }, 3000);
+        
+        setShowcart(false)
+        
       }
+    
+      
+      
+      
 
 
   }
@@ -349,7 +376,7 @@ const CarteContextDisplay = () => {
           </div>
 
           {/* Card form */}
-          {payWithCard ? (
+          {  payWithCard ? (
             <div  className="space-y-4">
               {/* Card Number */}
               <div>
@@ -394,13 +421,14 @@ const CarteContextDisplay = () => {
               <div>
                 <label className="block text-sm font-medium mb-1" htmlFor="card-name">Name on Card <span className="text-red-500">*</span></label>
                 <input
+                
                 ref={nameCard}
                   id="card-name"
                   className="text-sm text-gray-800 bg-white border rounded leading-5 py-2 px-3 border-gray-200 hover:border-gray-300 focus:border-indigo-300 shadow-sm placeholder-gray-400 focus:ring-0 w-full"
                   type="text"
                   placeholder="John Doe"
                 />
-                {errorMessages.Numero && <p style={{ color: "red" }}>{errorMessages.Numero}</p>}
+                {errorMessages.Name && <p style={{ color: "red" }}>{errorMessages.Name}</p>}
               </div>
               {/* Email */}
               <div>
@@ -421,7 +449,7 @@ const CarteContextDisplay = () => {
               <div  >
            
             <div class="mb-4">
-                <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+                <label for="description" class="block text-sm font-medium text-gray-700">Description<span className='text-xs'>(optionale)</span></label>
                 <textarea id="description" ref={description} name="description" rows="3" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" ></textarea>
                 
             </div>

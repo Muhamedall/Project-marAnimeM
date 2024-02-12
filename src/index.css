@@ -221,10 +221,11 @@ header img{
 
 
 .overlays{
+  
+  width: 96%;
   position: absolute;
   top: 0;
   left: 0;
-
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
   padding: 20px;
@@ -235,11 +236,12 @@ header img{
   justify-content: center;
   opacity: 0;
   transition: opacity 0.3s ease;
-  height: 100%;
+  height: 99%;
  
 }
 .anime-container:hover .overlays {
   opacity: 1;
+  
 }
 .overlays .btn-watche-save{
  

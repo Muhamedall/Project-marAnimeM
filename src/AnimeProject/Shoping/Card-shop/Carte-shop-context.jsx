@@ -23,11 +23,14 @@ export const CarteProvider = ({ children }) => {
     const updatedCart = cartItems.filter((item) => item.id !== itemId);
     setCartItems(updatedCart);
   };
-
+  const cleareCaret = () => {
+    // Clear cart items without updating the total quantity
+    setCartItems([]);
+  };
   const cartTotalQuantity = cartItems.length;
 
   return (
-    <CarteContext.Provider value={{ cartItems, addToCart, removeFromCart, cartTotalQuantity }}>
+    <CarteContext.Provider value={{ cartItems, addToCart, removeFromCart, cartTotalQuantity ,cleareCaret }}>
       {children}
     </CarteContext.Provider>
   );
