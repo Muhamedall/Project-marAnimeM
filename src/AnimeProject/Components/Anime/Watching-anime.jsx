@@ -14,6 +14,9 @@ const Watching = () => {
     const filteredAnime = dataAnime.listanime.filter(data =>
         data.attributes.Title.trim().toLowerCase() === animeName.trim().toLowerCase()
     );
+    const filteredAnimeTwo = dataAnimeTwo.listAnimeTwo.filter(data =>
+        data.attributes.Title.trim().toLowerCase() === animeName.trim().toLowerCase()
+    );
     
     
 
@@ -31,7 +34,7 @@ console.log("Filtered Anime:", filteredAnime);
 
     return (
         <>
-        {filteredAnime?.map((anime, keys) => (
+        {filteredAnime && filteredAnimeTwo?.map((anime, keys) => (
                 <div key={keys} style={{ height:'5%'}} >
                      <h1 className='font-serif text-6xl mb-2 text-center'>{anime.attributes.Title}</h1>
                          <p style={{width:'50%',marginLeft:'30%' ,marginTop:'5px'} } className='font-serif' >{anime.attributes.description}</p>

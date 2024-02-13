@@ -3,11 +3,14 @@
 import React from "react";
 
 import ListAnime from './Anime/ListAnime';
-
+import { Link } from "react-router-dom";
+import { useContext } from "react";
 import Attack from './Picturs/ErynYager.png';
 import claoud from './Picturs/—Pngtree—floating realistic clouds_8623463.png';
 import Foter from './Foter';
 
+import { DataApi  } from './ContextApi/Data-context-Api';
+import {SaveContext} from './Savin-folder/SaveContext';
 
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -19,9 +22,23 @@ import { faPlay } from '@fortawesome/free-solid-svg-icons';
 
 
 export default function Homme({searchTerm}){
+  const { addToSave  } = useContext(SaveContext);
  
+  const contextData = useContext(DataApi);
+  
+  const {dataAnimeTwo}=contextData;
 
+  const listAnimeTwo=dataAnimeTwo.listAnimeTwo||[];
 
+  const filterAnime = listAnimeTwo.filter(item => item.id === 10);
+
+  console.log("this is anime list :"+filterAnime)
+  if (filterAnime.length === 0) {
+    console.log("No anime found with id 10");
+  } else {
+    console.log("Title of the found anime:", filterAnime[0].Title);
+  }
+  
     return(
         <>
        
@@ -39,9 +56,14 @@ export default function Homme({searchTerm}){
              <div className="Button_Header">
            
              
-                  <button className="bg-sky-800 hover:bg-sky-600 text-white font-bold py-2 px-9 border-b-4 border-sky-950 hover:border-blue-500 rounded">
-                  <FontAwesomeIcon icon={faPlay}/> </button>
-                  <button className="bg-sky-800 hover:bg-sky-600 text-white font-bold py-2 px-4 border-b-4 border-sky-950 hover:border-blue-500 rounded"><FontAwesomeIcon icon={faBookmark}/></button>
+             {filterAnime.length > 0 && (
+              <Link to={`/Watche/${filterAnime[0].attributes.Title}`}>
+                <button className="bg-sky-800 hover:bg-sky-600 text-white font-bold py-2 px-9 border-b-4 border-sky-950 hover:border-blue-500 rounded">
+                  <FontAwesomeIcon icon={faPlay} />
+                </button>
+              </Link>
+            )}
+                  <button onClick={() => addToSave(filterAnime[0])} className="bg-sky-800 hover:bg-sky-600 text-white font-bold py-2 px-4 border-b-4 border-sky-950 hover:border-blue-500 rounded" ><FontAwesomeIcon icon={faBookmark} /></button>
             </div>
 
         </div>
