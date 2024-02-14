@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "accessoires_animes",
+  "info": {
+    "singularName": "accessoires-anime",
+    "pluralName": "accessoires-animes",
+    "displayName": "Accessoires-anime",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "rate": {
+      "type": "decimal"
+    },
+    "quantite": {
+      "type": "integer"
+    },
+    "prixHabituel": {
+      "type": "decimal"
+    },
+    "prixSolde": {
+      "type": "decimal"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}

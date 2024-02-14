@@ -8,7 +8,9 @@ export const DataApi = createContext();
 const DataApiContext = ({ children }) => {
   const [dataAnime, setDataAnime] = useState({ listanime: [] });
   const [dataProductsNaruto, setdataProductNaruto] = useState({ ListPrNaruto: [] });
+  const [productsHero ,setHero]=useState({listproductHero:[]});
   const [dataAnimeTwo, setdataAnimeTwo] = useState({ listAnimeTwo: [] });
+  const [accessoires ,setaccessoires]=useState({listAcesoires:[]})
   const [Animefull ,setAnimeFull]=useState({listAnimeFull:[]});
   const [Mangas ,setMangas]=useState({listManga:[]});
 
@@ -33,6 +35,26 @@ const DataApiContext = ({ children }) => {
       })
       .catch((error) => {
         console.error("Error fetching product data:", error);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios.get('http://localhost:1337/api/my-hero-acadymes?populate=*')
+      .then((response) => {
+        setHero({ listproductHero: response.data.data });
+      })
+      .catch((error) => {
+        console.error("Error fetching anime data:", error);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios.get('http://localhost:1337/api/accessoires-animes?populate=*')
+      .then((response) => {
+        setaccessoires({ listAcesoires: response.data.data });
+      })
+      .catch((error) => {
+        console.error("Error fetching anime data:", error);
       });
   }, []);
 
@@ -70,7 +92,7 @@ const DataApiContext = ({ children }) => {
 
 
   return (
-    <DataApi.Provider value={{ dataAnime, dataProductsNaruto ,dataAnimeTwo ,Animefull,Mangas}}>
+    <DataApi.Provider value={{ dataAnime, dataProductsNaruto ,productsHero,accessoires,dataAnimeTwo ,Animefull,Mangas}}>
       {children}
     </DataApi.Provider>
   );

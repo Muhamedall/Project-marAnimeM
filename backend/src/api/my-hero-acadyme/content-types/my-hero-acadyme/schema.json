@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "my_hero_acadymes",
+  "info": {
+    "singularName": "my-hero-acadyme",
+    "pluralName": "my-hero-acadymes",
+    "displayName": "My-hero-acadyme",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "rate": {
+      "type": "decimal"
+    },
+    "quantite": {
+      "type": "integer"
+    },
+    "prixHabituel": {
+      "type": "decimal"
+    },
+    "prixSolde": {
+      "type": "decimal"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}

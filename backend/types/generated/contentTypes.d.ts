@@ -677,6 +677,44 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiAccessoiresAnimeAccessoiresAnime
+  extends Schema.CollectionType {
+  collectionName: 'accessoires_animes';
+  info: {
+    singularName: 'accessoires-anime';
+    pluralName: 'accessoires-animes';
+    displayName: 'Accessoires-anime';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Title: Attribute.String;
+    description: Attribute.String;
+    rate: Attribute.Decimal;
+    quantite: Attribute.Integer;
+    prixHabituel: Attribute.Decimal;
+    prixSolde: Attribute.Decimal;
+    image: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::accessoires-anime.accessoires-anime',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::accessoires-anime.accessoires-anime',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiAmimeTwoeAmimeTwoe extends Schema.CollectionType {
   collectionName: 'amime_twoes';
   info: {
@@ -736,6 +774,43 @@ export interface ApiAnimeAnime extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::anime.anime',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiMyHeroAcadymeMyHeroAcadyme extends Schema.CollectionType {
+  collectionName: 'my_hero_acadymes';
+  info: {
+    singularName: 'my-hero-acadyme';
+    pluralName: 'my-hero-acadymes';
+    displayName: 'My-hero-acadyme';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Title: Attribute.String;
+    description: Attribute.String;
+    rate: Attribute.Decimal;
+    quantite: Attribute.Integer;
+    prixHabituel: Attribute.Decimal;
+    prixSolde: Attribute.Decimal;
+    image: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::my-hero-acadyme.my-hero-acadyme',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::my-hero-acadyme.my-hero-acadyme',
       'oneToOne',
       'admin::user'
     > &
@@ -894,8 +969,10 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::accessoires-anime.accessoires-anime': ApiAccessoiresAnimeAccessoiresAnime;
       'api::amime-twoe.amime-twoe': ApiAmimeTwoeAmimeTwoe;
       'api::anime.anime': ApiAnimeAnime;
+      'api::my-hero-acadyme.my-hero-acadyme': ApiMyHeroAcadymeMyHeroAcadyme;
       'api::myproject.myproject': ApiMyprojectMyproject;
       'api::product.product': ApiProductProduct;
       'api::products-naruto.products-naruto': ApiProductsNarutoProductsNaruto;

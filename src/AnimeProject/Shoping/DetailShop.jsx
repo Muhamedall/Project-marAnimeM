@@ -1,73 +1,75 @@
-//DetailShop.jsx
-
 import { useContext } from 'react';
-import {DataApi } from '../Components/ContextApi/Data-context-Api';
-import { useParams , useNavigate} from 'react-router-dom';
+import { DataApi } from '../Components/ContextApi/Data-context-Api';
+import { useParams, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
-
+import { faShoppingCart, faTruck } from '@fortawesome/free-solid-svg-icons';
 import { CarteContext } from './Card-shop/Carte-shop-context';
-import { faTruck } from '@fortawesome/free-solid-svg-icons';
-
-
 
 const DetailShop = () => {
-    const products=useContext(DataApi)
+    const { dataProductsNaruto, productsHero, accessoires } = useContext(DataApi);
     const { addToCart } = useContext(CarteContext);
     const { productNam } = useParams();
     const navigate = useNavigate();
-    const filteredProduct = products?.dataProductsNaruto?.ListPrNaruto.filter(data =>
-        data.attributes.Title.trim().toLowerCase() === productNam.trim().toLowerCase()
-    );
-    const handleAddToCart = () => {
-        addToCart(filteredProduct[0]);
-        navigate('/Carte-shop');
-        // Redirect to shop component
 
- 
+    let filteredProduct = null;
+
+    if (dataProductsNaruto) {
+        filteredProduct = dataProductsNaruto.ListPrNaruto.find(data =>
+            data.attributes.Title.trim().toLowerCase() === productNam.trim().toLowerCase()
+        );
+    }
+
+    if (!filteredProduct && productsHero) {
+        filteredProduct = productsHero.listproductHero.find(data =>
+            data.attributes.Title.trim().toLowerCase() === productNam.trim().toLowerCase()
+        );
+    }
+
+    if (!filteredProduct && accessoires) {
+        filteredProduct = accessoires.listAcesoires.find(data =>
+            data.attributes.Title.trim().toLowerCase() === productNam.trim().toLowerCase()
+        );
+    }
+
+    const handleAddToCart = () => {
+        if (filteredProduct) {
+            addToCart(filteredProduct);
+            navigate('/Carte-shop');
+        }
     };
-    
 
     return (
         <>
-    
-        <section className='mt-10 Information-Shop flex flex-row gap-2  '>
-
-        <div className='Product-description-general'>
-            <div className='  flex flex-row gap-7'>
-            {filteredProduct.length > 0 ? (
-                <img className="shadow-2xl "
-                src={`http://localhost:1337${filteredProduct[0].attributes.image.data.attributes.url}`}
-                alt={filteredProduct[0].attributes.Title}
-                style={{ maxWidth: "40%" }}
-                />
-            ):(
-                <p >No product found</p>
-            )}
-            <div>
-            <h1 className="text-2xl font-serif">{filteredProduct[0].attributes.Title}</h1>
-            
-            <div className=' flex flex-row gap-3 '>
-              <span>{filteredProduct[0].attributes.prixHabituel} €</span><span className='line-through text-gray-400'>{filteredProduct[0].attributes.prixSolde} €</span>
-              </div>
-             
-              <h2 className='font-mono text-green-500'> <FontAwesomeIcon icon={faTruck}  className='text-slate-950'/> Free Shipping </h2>
-              <br></br>
-              
-              <button   onClick={handleAddToCart} className="shadow bg-slate-950 hover:bg-slate-700 focus:shadow-outline focus:outline-none text-white font-bold py-1 px-4 rounded">
-              <FontAwesomeIcon icon={faShoppingCart} /> Add to Cart
-      </button>
-      
-            
-            </div>
-           
-            </div>
-            
-            </div>
-           
-           
-
-           </section>
+            <section className='mt-10 Information-Shop flex flex-row gap-2'>
+                <div className='Product-description-general'>
+                    {filteredProduct ? (
+                        <>
+                            <img
+                                className="shadow-2xl"
+                                src={`http://localhost:1337${filteredProduct.attributes.image.data.attributes.url}`}
+                                alt={filteredProduct.attributes.Title}
+                                style={{ maxWidth: "40%" }}
+                            />
+                            <div>
+                                <h1 className="text-2xl font-serif">{filteredProduct.attributes.Title}</h1>
+                                <div className='flex flex-row gap-3'>
+                                    <span>{filteredProduct.attributes.prixHabituel} €</span>
+                                    <span className='line-through text-gray-400'>{filteredProduct.attributes.prixSolde} €</span>
+                                </div>
+                                <h2 className='font-mono text-green-500'>
+                                    <FontAwesomeIcon icon={faTruck} className='text-slate-950' /> Free Shipping
+                                </h2>
+                                <br />
+                                <button onClick={handleAddToCart} className="shadow bg-slate-950 hover:bg-slate-700 focus:shadow-outline focus:outline-none text-white font-bold py-1 px-4 rounded">
+                                    <FontAwesomeIcon icon={faShoppingCart} /> Add to Cart
+                                </button>
+                            </div>
+                        </>
+                    ) : (
+                        <p>No product found</p>
+                    )}
+                </div>
+            </section>
         </>
     );
 };

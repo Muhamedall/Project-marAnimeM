@@ -5,6 +5,7 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { faHashtag } from '@fortawesome/free-solid-svg-icons';
 
 import { faUser } from '@fortawesome/free-solid-svg-icons';
+import Foter from "../Foter";
 
 const Manga =()=>{
     const Manga=useContext(DataApi);
@@ -65,9 +66,12 @@ const Manga =()=>{
           
            
         </div>
+        
         </>  ) }
         
-       
+        <footer>
+            <Foter/>
+        </footer>
         </>
     )
 

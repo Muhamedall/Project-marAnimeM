@@ -1,16 +1,14 @@
 //Shop.jsx
 import './shopStyle.css';
-import ListProductsNaruto from './Products-shop/Products-Naruto';
+import ListProductsNaruto from './Products-shop/Products';
 
 
 const Shop =()=>{
    
  return(
   <>
-  <header>
-  <h1 className='text-slay-50 text-center text-xl'>Welcom for shoping</h1>
-  </header>
-  <section className='Naruto-section'>
+ 
+  <section >
    
     <ListProductsNaruto />
 

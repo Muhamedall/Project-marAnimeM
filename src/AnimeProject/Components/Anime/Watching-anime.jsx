@@ -34,27 +34,20 @@ console.log("Filtered Anime:", filteredAnime);
 
     return (
         <>
-        {filteredAnime && filteredAnimeTwo?.map((anime, keys) => (
-                <div key={keys} style={{ height:'5%'}} >
-                     <h1 className='font-serif text-6xl mb-2 text-center'>{anime.attributes.Title}</h1>
-                         <p style={{width:'50%',marginLeft:'30%' ,marginTop:'5px'} } className='font-serif' >{anime.attributes.description}</p>
-                         <div style={{marginLeft:'35%' }} className='flex flex-row gap-5 text-center '>
-                         <div><h2 style={{}} className='text-center text-4xl '>Enjoy watching </h2></div>
-                         <div><img style={{width:'13%'  }} src={gon} alt=''/></div>
-                        
-                         </div>
-                        
-                     <div>
-                   
-                    
+       {(filteredAnime || []).concat(filteredAnimeTwo || []).map((anime, keys) => (
+    <div key={keys} style={{ height: '5%' }}>
+        <h1 className='font-serif text-6xl mb-2 text-center'>{anime.attributes.Title}</h1>
+        <p style={{ width: '50%', marginLeft: '30%', marginTop: '5px' }} className='font-serif'>{anime.attributes.description}</p>
+        <div style={{ marginLeft: '35%' }} className='flex flex-row gap-5 text-center '>
+            <div><h2 style={{}} className='text-center text-4xl '>Enjoy watching </h2></div>
+            <div><img style={{ width: '13%' }} src={gon} alt='' /></div>
+        </div>
+        <div>
+            <img style={{ marginLeft: '80%', width: '10%' }} className=' anime-container transition duration-700 ease-in-out hover:transform hover:-translate-y-1 hover:scale-110 mb-5 ' src={`http://localhost:1337${anime.attributes.image.data.attributes.url}`} alt='' />
+        </div>
+    </div>
+))}
 
-                  
-                 
-                    <img style={{marginLeft:'80%' ,width:'10%'}} className=' anime-container transition duration-700 ease-in-out hover:transform hover:-translate-y-1 hover:scale-110 mb-5 ' src={`http://localhost:1337${anime.attributes.image.data.attributes.url}`} alt=''  />
-                    
-                    </div>
-                </div>
-            ))}
         <div  className='  container  '>
             
             <div style={{  padding: '20px', marginTop: "0"  ,justifyContent:'center'}}>
