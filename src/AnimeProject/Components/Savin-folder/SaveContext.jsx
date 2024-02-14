@@ -20,10 +20,12 @@ export const SaveProvider = ({ children }) => {
   const removeFromSaved = (itemId) => {
     const updatedSaves = savestItems.filter((item) => item.id !== itemId);
     setSavesItems(updatedSaves);
+  
   };
+  const savesTotal = savestItems.length;
 
   return (
-    <SaveContext.Provider value={{ savestItems, addToSave, removeFromSaved }}>
+    <SaveContext.Provider value={{ savestItems, addToSave, removeFromSaved ,savesTotal}}>
       {children}
     </SaveContext.Provider>
   );

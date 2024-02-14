@@ -2,6 +2,7 @@
 import { Link, Outlet } from "react-router-dom";
 import React, { useContext } from 'react';
 import { CarteContext } from "../Shoping/Card-shop/Carte-shop-context";
+import {SaveContext} from './Savin-folder/SaveContext';
 
 import { useRef} from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -16,6 +17,7 @@ import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 export default function Navbar({ onSearchChange }) {
   const { cartTotalQuantity } = useContext(CarteContext);
+  const {savesTotal} =useContext(SaveContext)
 
  
   const searchRef = useRef('');
@@ -53,8 +55,8 @@ export default function Navbar({ onSearchChange }) {
           <Link to="Shop" className="linkTo">Shop</Link>
           </li>
           <li>
-          <Link to="SaveAnime" ><FontAwesomeIcon className='text-slate-50 h-5 hover:text-yellow-300 h-5 mt-1  hover:text-yellow-300 '  type='submit'
-           icon={faBookmark}/></Link>
+          <Link to="SaveAnime" ><FontAwesomeIcon className='static text-slate-50 h-5 hover:text-yellow-300 h-5 mt-1  hover:text-yellow-300 '  type='submit'
+           icon={faBookmark}/><span style={{position:'absolute' ,borderRadius:'10px',top:"4px",padding:"3px",right:'58%' }} className=" bg-red-600 text-slate-50 text-xs   text-red-600">{savesTotal}</span></Link>
            
           </li>
           <label className="relative block">
@@ -84,9 +86,9 @@ export default function Navbar({ onSearchChange }) {
        
           </label>
           <li>
-          <Link to="Carte-shop" className="linkTo">
-              <FontAwesomeIcon className="text-slate-50 w-10" icon={faShoppingCart} />
-              <span>{cartTotalQuantity}</span>
+          <Link to="Carte-shop" >
+              <FontAwesomeIcon className="static  text-slate-50 h-5 " icon={faShoppingCart} />
+              <span style={{position:'absolute' ,borderRadius:'10px',top:"4px",padding:"3px" }} className=" bg-red-600 text-slate-50 text-xs   text-red-600">{cartTotalQuantity}</span>
             </Link>
           </li>
           <li>

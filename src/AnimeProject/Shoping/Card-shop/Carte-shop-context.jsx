@@ -3,7 +3,7 @@ import React, { createContext, useState, useEffect } from 'react';
 export const CarteContext = createContext();
 
 export const CarteProvider = ({ children }) => {
-  // Load  items from local storage  initialize as empty array
+  // Load cart items from local storage if available, otherwise initialize as empty array
   const [cartItems, setCartItems] = useState(JSON.parse(localStorage.getItem('cartItems')) || []);
 
   // Update local storage whenever cart items change
@@ -24,7 +24,7 @@ export const CarteProvider = ({ children }) => {
     setCartItems(updatedCart);
   };
   const cleareCaret = () => {
-    
+    // Clear cart items without updating the total quantity
     setCartItems([]);
   };
   const cartTotalQuantity = cartItems.length;
