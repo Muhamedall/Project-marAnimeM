@@ -21,7 +21,7 @@ The marAnime Website is a web application developed using modern web technologie
 - Browse and watch anime episodes.
 - Read manga chapters.
 - Purchase anime-related merchandise.
-- Responsive design for optimal viewing on various devices.
+
 
 ## Technologies Used
 
