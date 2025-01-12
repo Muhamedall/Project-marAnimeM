@@ -59,3 +59,8 @@ Contributions to the AnimeMania Website project are welcome! If you'd like to co
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
+
+<img width="946" alt="Capture d'écran 2024-02-15 214457" src="https://github.com/user-attachments/assets/6c4c0024-31f8-4698-b322-43305be732c9" />
+
+<img width="960" alt="Capture d'écran 2024-02-15 214522" src="https://github.com/user-attachments/assets/e9a0c8ab-4399-4611-881b-975e361adaf1" />
+
